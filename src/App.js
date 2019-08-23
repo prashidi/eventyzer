@@ -1,18 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layouts/Navbar";
+import Dashboard from "./components/layouts/Dashboard";
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <h1>Hello React!</h1>
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;
