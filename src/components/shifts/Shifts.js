@@ -1,29 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import PropTypes from "prop-types";
 
 class Shifts extends Component {
   render() {
-    const shifts = [
-      {
-        id: "343533",
-        name: "Labia Festival",
-        location: "Athlon",
-        date: "23/08/2019",
-        time: "18:30",
-        applications: [
-          {
-            userid: 1,
-            displayName: "Patrick",
-            type: "barman"
-          },
-          {
-            userid: 2,
-            type: "Service staff",
-            displayName: "Ben"
-          }
-        ]
-      }
-    ];
+    const { shifts } = this.props;
+
     if (shifts) {
       return (
         <div className="row">
@@ -48,11 +33,11 @@ class Shifts extends Component {
             </thead>
             <tbody>
               {shifts.map(shift => (
-                <tr>
+                <tr key={shift.id}>
                   <td>{shift.name}</td>
                   <td>{shift.date}</td>
                   <td>{shift.location}</td>
-                  <td>{shift.applications.length}</td>
+                  <td>{shift.applications ? shift.applications.length : 0}</td>
                   <td>
                     <Link
                       to={`/shift/${shift.id}/applications`}
@@ -68,9 +53,19 @@ class Shifts extends Component {
         </div>
       );
     } else {
-      return <h1>Loading</h1>;
+      return <h1>Loading...</h1>;
     }
   }
 }
 
-export default Shifts;
+Shifts.propTypes = {
+  firestore: PropTypes.object.isRequired,
+  shifts: PropTypes.array
+};
+
+export default compose(
+  firestoreConnect([{ collection: "shifts" }]),
+  connect((state, props) => ({
+    shifts: state.firestore.ordered.shifts
+  }))
+)(Shifts);
