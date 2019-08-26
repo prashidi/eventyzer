@@ -1,12 +1,12 @@
 import React from "react";
 import Sidebar from "../layouts/Sidebar";
-import Application from "../shifts/Applications";
+import Shifts from "../shifts/Shifts";
 
 export default () => {
   return (
     <div className="row">
       <div className="col-md-10">
-        <Application />
+        <Shifts />
       </div>
       <div className="col-md-2">
         <Sidebar />
