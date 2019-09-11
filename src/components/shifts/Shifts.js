@@ -40,16 +40,12 @@ class Shifts extends Component {
                   <td>{shift.location}</td>
                   <td>{shift.applications ? shift.applications.length : 0}</td>
                   <td>
-                    {shift.applications ? (
-                      <Link
-                        to={`/shift/${shift.id}`}
-                        className="btn btn-secondary btn-sm"
-                      >
-                        <i className="fas fa-arrow-circle-right" /> Applications
-                      </Link>
-                    ) : (
-                      ""
-                    )}
+                    <Link
+                      to={`/shift/${shift.id}`}
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <i className="fas fa-arrow-circle-right" /> Details
+                    </Link>
                   </td>
                 </tr>
               ))}

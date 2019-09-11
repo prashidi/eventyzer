@@ -6,7 +6,8 @@ import store from "./store";
 import Navbar from "./components/layouts/Navbar";
 import Dashboard from "./components/layouts/Dashboard";
 import AddShift from "./components/shifts/AddShift";
-import Applications from "./components/shifts/Applications";
+import ShiftDetails from "./components/shifts/ShiftDetails";
+
 class App extends Component {
   render() {
     return (
@@ -18,7 +19,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/shift/add" component={AddShift} />
-                <Route exact path="/shift/:id" component={Applications} />
+                <Route exact path="/shift/:id" component={ShiftDetails} />
               </Switch>
             </div>
           </div>
